@@ -1,0 +1,25 @@
+{
+  "name": "realtime_temp_rh",
+  "version": "1.0.0",
+  "description": "Realtime temperature and relative humidity visualization",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Myles<i@myles.hk>",
+  "license": "ISC",
+  "devDependencies": {
+    "vinyl-source-stream": "^1.1.0",
+    "browserify": "^14.4.0",
+    "browserify-css": "^0.11.0",
+    "gulp": "^3.9.1",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^3.0.0",
+    "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "d3": "^4.10.0",
+    "firebase": "^4.1.3"
+  }
+}

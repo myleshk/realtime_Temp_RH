@@ -1,0 +1,56 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+#title {
+    vertical-align: bottom;
+}
+
+.axis {
+    fill: none;
+    font-size: 12px;
+}
+
+.line {
+    fill: none;
+    stroke: #f1c40f;
+    stroke-width: 3px;
+}
+
+.RH-line {
+    fill: none;
+    stroke: #006321;
+    stroke-width: 1px;
+}
+
+.RH .tick {
+    stroke: #006321;
+}
+
+g.RH {
+    fill: rgba(0, 99, 33, 0.37);
+}
+
+.temp-line {
+    fill: none;
+    stroke: #630900;
+    stroke-width: 1px;
+}
+
+.temp .tick {
+    stroke: #630900;
+}
+
+g.temp {
+    fill: rgba(99, 9, 0, 0.37);
+}
+
+.circle {
+    stroke: #e74c3c;
+    stroke-width: 3px;
+    fill: #FFF;
+}
+
+.grid {
+    stroke: #DDD;
+    stroke-width: 1px;
+    fill: none;
+}
