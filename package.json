@@ -3,9 +3,6 @@
     "version": "1.0.0",
     "description": "Realtime temperature and relative humidity visualization",
     "main": "main.js",
-    "engines": {
-        "node": "8"
-    },
     "scripts": {
         "start": "gulp",
         "build:prod": "gulp compile_prod",
@@ -17,10 +14,10 @@
         "browser-sync": "^2.26.7",
         "browserify": "^14.4.0",
         "browserify-css": "^0.15.0",
-        "gulp": "^3.9.1",
+        "gulp": "^4.0.2",
         "gulp-streamify": "^1.0.2",
         "gulp-uglify": "^3.0.0",
-        "vinyl-source-stream": "^1.1.0",
+        "vinyl-source-stream": "^2.0.0",
         "watchify": "^3.11.1"
     },
     "dependencies": {

@@ -6,9 +6,7 @@ var gulp = require('gulp'),
     watchify = require('watchify'),
     browserSync = require('browser-sync');
 
-gulp.task('default', ['compile_dev', 'serve']);
-
-gulp.task('serve', [], function () {
+gulp.task('serve', function () {
     // .init starts the server
     const bs = browserSync.create();
     bs.init({
@@ -34,3 +32,5 @@ gulp.task('compile_dev', function () {
 
     return bundle();
 });
+
+gulp.task('default', gulp.series('compile_dev', 'serve'));

@@ -84,12 +84,13 @@ function initChart() {
   var db_ref = firebase.database().ref('records').limitToLast(max_record_count);
 
   db_ref.on('child_added', function (data) {
-    var { TS, T_C, RH, AC } = data.val();
+    var { TS, T_C, RH, AC, HI } = data.val();
     var newPoint = {
       time: parseTS(TS),
       temp: T_C,
-      RH: RH,
-      AC: AC
+      RH,
+      AC,
+      HI
     };
     updateLatestDataDisplay(newPoint);
     addPoint(newPoint);
@@ -107,6 +108,7 @@ var chart = d3.select('#chart')
 var margin = { top: 10, left: 35, bottom: 25, right: 35 };
 var x = d3.scaleTime().range([margin.left, width - margin.right]);
 var y_temp = d3.scaleLinear().domain([20, 40]).range([height - margin.bottom, margin.top]);
+var y_HI = d3.scaleLinear().domain([20, 40]).range([height - margin.bottom, margin.top]);
 var y_RH = d3.scaleLinear().domain([30, 99]).range([height - margin.bottom, margin.top]);
 var y_AC = d3.scaleLinear().domain([-2, 2]).range([height - margin.bottom, margin.top]);
 // -----------------------------------
@@ -116,6 +118,14 @@ var temp_line = d3.line().curve(d3.curveCardinal)
   })
   .y(function (d) {
     return y_temp(d.temp);
+  });
+
+var HI_line = d3.line().curve(d3.curveCardinal)
+  .x(function (d) {
+    return x(d.time);
+  })
+  .y(function (d) {
+    return y_HI(d.HI || d.temp);
   });
 
 var RH_line = d3.line().curve(d3.curveCardinal)
@@ -147,6 +157,7 @@ var axisY_RH = chart.append("g").attr('class', 'y axis RH').attr('transform', 't
 
 // Append the holder for line chart
 var path_temp = chart.append('path').classed("temp", true),
+  path_HI = chart.append('path').classed("HI", true),
   path_RH = chart.append('path').classed("RH", true),
   path_AC = chart.append('path').classed("AC", true);
 
@@ -166,6 +177,10 @@ function addPoint(record) {
     .attr('class', 'temp-line')
     .attr('d', temp_line);
 
+  path_HI.datum(data)
+    .attr('class', 'HI-line')
+    .attr('d', HI_line);
+
   path_RH.datum(data)
     .attr('class', 'RH-line')
     .attr('d', RH_line);
@@ -175,11 +190,13 @@ function addPoint(record) {
     .attr('d', AC_line);
 
   var domain_margin = 2;
-  y_temp.domain([d3.min(data, function (d) {
+  var temp_domain = [d3.min(data, function (d) {
     return d['temp'] - domain_margin
   }), d3.max(data, function (d) {
     return d['temp'] + domain_margin
-  })]);
+  })];
+  y_temp.domain(temp_domain);
+  y_HI.domain(temp_domain); // follow domain of temperature
   y_RH.domain([d3.min(data, function (d) {
     return d['RH'] - domain_margin
   }), d3.max(data, function (d) {
@@ -195,7 +212,8 @@ function addPoint(record) {
 
 function updateLatestDataDisplay(newPoint) {
   var template = document.getElementById('latest-data-template').innerHTML;
-  newPoint = { time: newPoint.time.toLocaleString(), temp: newPoint.temp, RH: newPoint.RH, AC: newPoint.AC };
+  newPoint = Object.assign({}, newPoint);
+  newPoint.time = newPoint.time.toLocaleString();
   var rendered = mustacheRender(template, newPoint);
   document.getElementById('latest-data').innerHTML = rendered;
 }

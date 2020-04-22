@@ -42,6 +42,13 @@ g.temp {
     fill: rgba(99, 9, 0, 0.37);
 }
 
+.HI-line {
+    fill: none;
+    stroke: #ff4836;
+    stroke-width: 1px;
+    stroke-dasharray: 3, 3;
+}
+
 .AC-line {
     fill: none;
     stroke: #aaaa00;
