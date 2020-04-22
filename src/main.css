@@ -1,5 +1,4 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
-
 #title {
     vertical-align: bottom;
 }
@@ -43,6 +42,12 @@ g.temp {
     fill: rgba(99, 9, 0, 0.37);
 }
 
+.AC-line {
+    fill: none;
+    stroke: #aaaa00;
+    stroke-width: 3px;
+}
+
 .circle {
     stroke: #e74c3c;
     stroke-width: 3px;
@@ -53,4 +58,8 @@ g.temp {
     stroke: #DDD;
     stroke-width: 1px;
     fill: none;
+}
+
+.logo {
+    max-width: 50px;
 }

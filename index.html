@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Room Statistics</title>
 </head>
+
 <body>
-<div class='container-fluid'>
-    <h2>
-        <a href='https://blog.myles.hk' title='Myles HK Blog' target="_blank">
-            <img src='img/logo.png' title='Temp Humidity Chart' style="vertical-align: top"></a>
-        <span id='title'>Realtime Temperature and Humidity Chart</span>
-    </h2>
-    <hr/>
-    <div id="chart-container">
-        <svg id="chart"></svg>
+    <div class='container-fluid'>
+        <h3>
+            <a href='https://blog.myles.hk' title='Myles HK Blog' target="_blank">
+                <img class="logo" src='img/logo.png' title='Temp Humidity Chart' style="vertical-align: top"></a>
+            <span id='title'>Realtime Temperature and Humidity Chart</span>
+        </h3>
+        <hr/>
+        <div id="latest-data"></div>
+        <script id="latest-data-template" type="x-tmpl-mustache">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="4">Latest Data</th>
+                    </tr>
+                    <tr>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                        <th>AC state</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{temp}}</td>
+                        <td>{{RH}}</td>
+                        <td>{{AC}}</td>
+                        <td>{{time}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </script>
+        <hr/>
+        <div id="chart-container">
+            <svg id="chart"></svg>
+        </div>
     </div>
-</div>
-<script src="build/bundle.js"></script>
+    <script src="build/bundle.js"></script>
 </body>
+
 </html>
